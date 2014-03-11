@@ -1,5 +1,16 @@
 require 'rake/clean'
+require 'rake/testtask'
 require 'fileutils'
+
+task default: :test
+task spec: :test
+
+Rake::TestTask.new(:test) do |t|
+  t.test_files = FileList['test/**/*_test.rb']
+  t.ruby_opts = ['-rubygems'] if defined? Gem
+  t.ruby_opts << '-Ilib:test'
+  t.warning = true
+end
 
 if defined?(Gem)
   directory('pkg/')

@@ -9,4 +9,6 @@ Gem::Specification.new('assets_include', AssetsInclude::VERSION) do |s|
   s.homepage = 'https://github.com/GoalSmashers/assets-include-ruby'
   s.license = 'MIT'
   s.files = `git ls-files`.split("\n") - %w(.gitignore)
+
+  s.add_development_dependency 'minitest'
 end

@@ -10,5 +10,6 @@ Gem::Specification.new('assets_include', AssetsInclude::VERSION) do |s|
   s.license = 'MIT'
   s.files = `git ls-files`.split("\n") - %w(.gitignore)
 
-  s.add_development_dependency 'minitest'
+  s.add_development_dependency 'minitest', '~> 4.7.0'
+  s.add_development_dependency 'flexmock', '~> 1.3.0'
 end

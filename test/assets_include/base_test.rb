@@ -81,6 +81,17 @@ describe AssetsInclude::Base do
     end
   end
 
+  describe '#inline' do
+    it 'should proxy a call to assetsinc and return correct result' do
+      should_run_includer_with(
+        options: ['-b', '-i', group],
+        output: :inline
+      )
+
+      includer.inline(group).must_equal(:inline)
+    end
+  end
+
   private
 
   def includer(options = {})

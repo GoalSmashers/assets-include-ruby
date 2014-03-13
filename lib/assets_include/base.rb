@@ -12,35 +12,27 @@ module AssetsInclude
     end
 
     def group(locator, options = {})
-      cache.empty unless bundled
-
-      cache.add("#{locator}-#{options.to_s.hash}") do
-        run(*command(locator, options))
-      end
+      assets(locator, options)
     end
 
     def list(locator)
-      cache.empty unless bundled
-
-      cache.add("#{locator}-list") do
-        run(*command(locator, list: true))
-      end
+      assets(locator, list: true)
     end
 
     def inline(locator)
-      cache.empty unless bundled
-
-      cache.add("#{locator}-inline") do
-        run(*command(locator, inline: true))
-      end
+      assets(locator, inline: true)
     end
 
     private
 
     attr_reader :cache
 
-    def run(*args)
-      IO.popen(args).read
+    def assets(locator, options)
+      cache.empty unless bundled
+
+      cache.add("#{locator}-#{options.to_s.hash}") do
+        IO.popen(command(locator, options)).read
+      end
     end
 
     def command(locator, options = {})

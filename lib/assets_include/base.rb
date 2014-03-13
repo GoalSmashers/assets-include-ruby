@@ -19,6 +19,14 @@ module AssetsInclude
       end
     end
 
+    def list(locator)
+      cache.empty unless bundled
+
+      cache.add("#{locator}-list") do
+        run(*command(locator, list: true))
+      end
+    end
+
     private
 
     attr_reader :cache
@@ -34,6 +42,7 @@ module AssetsInclude
       parts << "-c #{config}"
       parts << '-b' if bundled
       parts << '-s' if cache_boosters
+      parts << '-l' if options[:list]
       parts << "-a #{asset_hosts}" if asset_hosts
       parts << "-m #{options[:loading_mode]}" if options[:loading_mode]
       parts << locator

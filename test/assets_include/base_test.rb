@@ -70,6 +70,17 @@ describe AssetsInclude::Base do
     end
   end
 
+  describe '#list' do
+    it 'should proxy a call to assetsinc and return correct result' do
+      should_run_includer_with(
+        options: ['-b', '-l', group],
+        output: :list
+      )
+
+      includer.list(group).must_equal(:list)
+    end
+  end
+
   private
 
   def includer(options = {})

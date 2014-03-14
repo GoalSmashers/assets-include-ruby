@@ -4,6 +4,7 @@ module AssetsInclude
 
   class Base
     attr_accessor :bundled, :asset_hosts, :root, :config, :cache_boosters
+    attr_accessor :binary
 
     def initialize(&block)
       @cache = Cache.new
@@ -37,7 +38,7 @@ module AssetsInclude
 
     def command(locator, options = {})
       parts = []
-      parts << binary
+      parts << includer_binary
       parts << "-r #{root}"
       parts << "-c #{config}"
       parts << '-b' if bundled
@@ -50,8 +51,8 @@ module AssetsInclude
       parts
     end
 
-    def binary
-      File.join(root, '..', 'node_modules', '.bin', 'assetsinc')
+    def includer_binary
+      binary || File.join(root, '..', 'node_modules', '.bin', 'assetsinc')
     end
   end
 end

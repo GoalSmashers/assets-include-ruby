@@ -11,6 +11,18 @@ describe AssetsInclude::Base do
     super
   end
 
+  describe '#initialize' do
+    it 'should make binary customizable' do
+      flexmock(IO)
+        .should_receive(:popen)
+        .once
+        .with(['assetsinc', "-r #{root}", "-c #{config}", '-b', group].join(' '))
+        .and_return(flexmock(read: ''))
+
+      includer(binary: 'assetsinc').group(group)
+    end
+  end
+
   describe '#group' do
     it 'should proxy a call to assetsinc and return correct result' do
       should_run_includer_with(options: ['-b', group])

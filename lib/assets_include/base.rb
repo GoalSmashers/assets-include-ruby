@@ -31,7 +31,7 @@ module AssetsInclude
       cache.empty unless bundled
 
       cache.add("#{locator}-#{options.to_s.hash}") do
-        IO.popen(command(locator, options)).read
+        IO.popen(command(locator, options).join(' ')).read
       end
     end
 
@@ -51,7 +51,7 @@ module AssetsInclude
     end
 
     def binary
-      './node_modules/.bin/assetsinc'
+      File.join(root, '..', 'node_modules', '.bin', 'assetsinc')
     end
   end
 end

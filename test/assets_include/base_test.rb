@@ -68,6 +68,15 @@ describe AssetsInclude::Base do
 
       includer.group(group, loading_mode: 'async')
     end
+
+    it 'should do a real call and get a list of tags' do
+      assets = [
+        '<link href="/stylesheets/one.css?1394835562000" media="screen" rel="stylesheet"/>',
+        '<link href="/stylesheets/two.css?1394835574000" media="screen" rel="stylesheet"/>'
+      ]
+
+      includer(bundled: false).group(group).strip.must_equal(assets.join)
+    end
   end
 
   describe '#list' do
@@ -79,6 +88,15 @@ describe AssetsInclude::Base do
 
       includer.list(group).must_equal(:list)
     end
+
+    it 'should do a real call and get a list of assets' do
+      assets = [
+        '/stylesheets/one.css?1394835562000',
+        '/stylesheets/two.css?1394835574000'
+      ]
+
+      includer(bundled: false).list(group).strip.must_equal(assets.join(','))
+    end
   end
 
   describe '#inline' do
@@ -89,6 +107,12 @@ describe AssetsInclude::Base do
       )
 
       includer.inline(group).must_equal(:inline)
+    end
+
+    it 'should do a real call and get an inline style' do
+      inline = '<style type="text/css">.one,.two{color:red}</style>'
+
+      includer(bundled: true).inline(group).strip.must_equal(inline)
     end
   end
 
@@ -110,7 +134,7 @@ describe AssetsInclude::Base do
     flexmock(IO)
       .should_receive(:popen)
       .times(opts[:repeat] || 1)
-      .with([binary, "-r #{root}", "-c #{config}"] + opts[:options])
+      .with(([binary, "-r #{root}", "-c #{config}"] + opts[:options]).join(' '))
       .and_return(flexmock(read: opts[:output] || :assets))
   end
 
@@ -119,15 +143,15 @@ describe AssetsInclude::Base do
   end
 
   def binary
-    './node_modules/.bin/assetsinc'
+    File.join(root, '..', 'node_modules', '.bin', 'assetsinc')
   end
 
   def root
-    Dir.pwd
+    File.join(Dir.pwd, 'test', 'fixtures', 'public')
   end
 
   def config
-    './config/assets.yml'
+    File.join(root, '..', 'assets.yml')
   end
 
   def described_class

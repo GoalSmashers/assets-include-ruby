@@ -1,0 +1,9 @@
+{
+  "name": "assets-include-ruby-fixtures",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "assets-include": "1.x",
+    "assets-packager": "1.x"
+  }
+}

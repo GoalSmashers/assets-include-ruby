@@ -1,3 +1,5 @@
 .bundle
 /pkg
 /Gemfile.lock
+test/fixtures/node_modules
+test/fixtures/public/stylesheets/bundled

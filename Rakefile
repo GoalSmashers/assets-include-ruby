@@ -5,7 +5,11 @@ require 'fileutils'
 task default: :test
 task spec: :test
 
-Rake::TestTask.new(:test) do |t|
+task :test_setup do
+  `cd test/fixtures && npm install && ./node_modules/.bin/assetspkg -c assets.yml`
+end
+
+Rake::TestTask.new(test: :test_setup) do |t|
   t.test_files = FileList['test/**/*_test.rb']
   t.ruby_opts = ['-rubygems'] if defined? Gem
   t.ruby_opts << '-Ilib:test'

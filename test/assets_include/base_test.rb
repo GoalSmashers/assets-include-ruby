@@ -135,6 +135,7 @@ describe AssetsInclude::Base do
       inc.root = root
       inc.config = config
       inc.bundled = true
+      inc.binary = binary
 
       options.each do |key, value|
         inc.public_send("#{key}=", value)

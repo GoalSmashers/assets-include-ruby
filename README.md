@@ -1,5 +1,6 @@
 [![Build Status](https://secure.travis-ci.org/GoalSmashers/assets-include-ruby.png)](https://travis-ci.org/GoalSmashers/assets-include-ruby)
 [![Code Climate](https://codeclimate.com/github/GoalSmashers/assets-include-ruby.png)](https://codeclimate.com/github/GoalSmashers/assets-include-ruby)
+[![Code Climate](https://codeclimate.com/github/GoalSmashers/assets-include-ruby/coverage.png)](https://codeclimate.com/github/GoalSmashers/assets-include-ruby)
 
 ## What is assets-include-ruby?
 

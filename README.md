@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/GoalSmashers/assets-include-ruby.png)](https://travis-ci.org/GoalSmashers/assets-include-ruby)
+
 ## What is assets-include-ruby?
 
 Assets-include is a Ruby wrapper around [Assets-Include](https://github.com/GoalSmashers/assets-include) for including your assets in HTML views.

@@ -192,8 +192,17 @@ describe AssetsInclude::Base do
     flexmock(IO)
       .should_receive(:popen)
       .times(opts[:repeat] || 1)
-      .with(([binary, "-r #{root}", "-c #{config}"] + opts[:options]).join(' '))
+      .with(command(opts[:options]).join(' '))
       .and_return(flexmock(read: opts[:output] || :assets))
+  end
+
+  def command(options = {})
+    [
+      binary,
+      "-r #{root}",
+      "-c #{config}",
+      options
+    ].flatten.compact.uniq
   end
 
   def file_with_timestamp(name)

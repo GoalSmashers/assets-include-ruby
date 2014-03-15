@@ -4,7 +4,7 @@ Bundler.setup
 require 'sinatra'
 require 'assets_include'
 
-helpers AssetsInclude::Helpers.configure
+helpers AssetsInclude.helpers
 
 get '/' do
   erb :index

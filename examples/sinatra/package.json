@@ -1,0 +1,8 @@
+{
+  "name": "assets-include-sinatra-example",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "assets-include": "1.x"
+  }
+}

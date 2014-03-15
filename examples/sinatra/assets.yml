@@ -1,0 +1,8 @@
+javascripts:
+  all:
+    - vendor/*
+    - main
+stylesheets:
+  all:
+    - normalize
+    - base

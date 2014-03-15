@@ -54,16 +54,16 @@ module AssetsInclude
     def command(locator, options = {})
       parts = []
       parts << includer_binary
-      parts << "-r #{root}" if root
-      parts << "-c #{config}"
-      parts << '-b' if bundled
-      parts << '-s' if cache_boosters
-      parts << '-l' if options[:list]
-      parts << '-i' if options[:inline]
-      parts << "-a #{asset_hosts}" if asset_hosts
-      parts << "-m #{options[:loading_mode]}" if options[:loading_mode]
+      parts << root_switch
+      parts << config_switch
+      parts << bundled_switch
+      parts << cache_boosters_switch
+      parts << list_switch(options)
+      parts << inline_switch(options)
+      parts << asset_hosts_switch
+      parts << loading_mode_switch(options)
       parts << locator
-      parts
+      parts.compact
     end
 
     def includer_binary
@@ -83,6 +83,38 @@ module AssetsInclude
 
     def implicit_root
       root || File.join(Dir.pwd, 'public')
+    end
+
+    def root_switch
+      root ? "-r #{root}" : nil
+    end
+
+    def config_switch
+      "-c #{config}"
+    end
+
+    def bundled_switch
+      bundled ? '-b' : nil
+    end
+
+    def cache_boosters_switch
+      cache_boosters ? '-s' : nil
+    end
+
+    def list_switch(options = {})
+      options[:list] ? '-l' : nil
+    end
+
+    def inline_switch(options = {})
+      options[:inline] ? '-i' : nil
+    end
+
+    def asset_hosts_switch
+      asset_hosts ? "-a #{asset_hosts}" : nil
+    end
+
+    def loading_mode_switch(options = {})
+      options[:loading_mode] ? "-m #{options[:loading_mode]}" : nil
     end
   end
 end

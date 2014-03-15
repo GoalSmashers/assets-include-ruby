@@ -69,6 +69,7 @@ and adds the following methods to your views:
 * `assets.group(locator)` - returns a list of `<script>` or `<link>` tags for JavaScript or CSS assets respectively
 * `assets.inline(locator)` - returns inlined JavaScript or CSS assets. In development mode works the same way as `#group`.
 * `assets.list(locator)` - returns an array of assets files to easily embed them into JavaScript or data attributes.
+* `assets.reset` - empties includer's cache
 
 ## License
 

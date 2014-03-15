@@ -140,6 +140,19 @@ describe AssetsInclude::Base do
     end
   end
 
+  describe '#reset' do
+    it 'should empty cache' do
+      should_run_includer_with(
+        options: ['-b', group],
+        repeat: 2
+      )
+
+      includer.group(group)
+      includer.reset
+      includer.group(group)
+    end
+  end
+
   private
 
   def includer(options = {})

@@ -25,6 +25,10 @@ module AssetsInclude
       assets(locator, inline: true)
     end
 
+    def reset
+      cache.empty
+    end
+
     private
 
     attr_reader :cache

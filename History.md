@@ -4,3 +4,4 @@
 * Provides 1:1 mapping with `assetsinc` 1.1 API.
 * Provides Sinatra helpers providing the same features as node version.
 * Provides Sinatra examples.
+* Provides a #reset option to empty includer's cache.

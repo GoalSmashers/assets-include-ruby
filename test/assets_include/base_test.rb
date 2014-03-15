@@ -33,6 +33,20 @@ describe AssetsInclude::Base do
         inc.binary = binary
       }.group(group)
     end
+
+    it 'should set `bundled` to false by default' do
+      described_class.new.bundled.must_equal false
+    end
+
+    it 'should set `bundled` to true on production' do
+      begin
+        ENV['RACK_ENV'] = 'production'
+
+        described_class.new.bundled.must_equal true
+      ensure
+        ENV['RACK_ENV'] = 'test'
+      end
+    end
   end
 
   describe '#group' do

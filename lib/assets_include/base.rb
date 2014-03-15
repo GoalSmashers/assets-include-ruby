@@ -9,6 +9,7 @@ module AssetsInclude
     def initialize(&block)
       @cache = Cache.new
       @config = default_assets_location
+      @bundled = production?
 
       yield(self) if block_given?
     end
@@ -43,6 +44,10 @@ module AssetsInclude
 
     def default_assets_location
       File.join(Dir.pwd, 'assets.yml')
+    end
+
+    def production?
+      ENV['RACK_ENV'] == 'production'
     end
 
     def command(locator, options = {})

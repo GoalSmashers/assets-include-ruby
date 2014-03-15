@@ -57,7 +57,7 @@ __END__
 
 AssetsInclude.helpers accepts an options hash, i.e.,
 
-* `bundled` - `true` for bundled, production mode, `false` for development mode
+* `bundled` - whether to serve bundled (production) or expanded (development) assets. Defaults based on ENV['RACK_ENV'] value.
 * `config` - path to configuration file, defaults to ./assets.yml
 * `root` - root path of all assets, defaults to ./public under config's path
 * `cache_boosters` - `true` for cache boosters (timestamp in dev mode, md5 for bundled, production files)

@@ -107,10 +107,10 @@ describe AssetsInclude::Base do
     it 'should proxy a call to assetsinc and return correct result' do
       should_run_includer_with(
         options: ['-b', '-l', group],
-        output: :list
+        output: 'list'
       )
 
-      includer.list(group).must_equal(:list)
+      includer.list(group).must_equal(['list'])
     end
 
     it 'should do a real call and get a list of assets' do
@@ -119,7 +119,7 @@ describe AssetsInclude::Base do
         '/stylesheets/two.css?1394835574000'
       ]
 
-      includer(bundled: false).list(group).strip.must_equal(assets.join(','))
+      includer(bundled: false).list(group).must_equal(assets)
     end
   end
 

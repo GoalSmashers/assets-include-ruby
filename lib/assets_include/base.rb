@@ -18,7 +18,7 @@ module AssetsInclude
     end
 
     def list(locator)
-      assets(locator, list: true)
+      assets(locator, list: true).strip.split(',')
     end
 
     def inline(locator)

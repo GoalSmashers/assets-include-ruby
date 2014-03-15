@@ -95,8 +95,8 @@ describe AssetsInclude::Base do
 
     it 'should do a real call and get a list of tags' do
       assets = [
-        '<link href="/stylesheets/one.css?1394835562000" media="screen" rel="stylesheet"/>',
-        '<link href="/stylesheets/two.css?1394835574000" media="screen" rel="stylesheet"/>'
+        %{<link href="#{file_with_timestamp('one.css')}" media="screen" rel="stylesheet"/>},
+        %{<link href="#{file_with_timestamp('two.css')}" media="screen" rel="stylesheet"/>}
       ]
 
       includer(bundled: false).group(group).strip.must_equal(assets.join)
@@ -115,8 +115,8 @@ describe AssetsInclude::Base do
 
     it 'should do a real call and get a list of assets' do
       assets = [
-        '/stylesheets/one.css?1394835562000',
-        '/stylesheets/two.css?1394835574000'
+        file_with_timestamp('one.css'),
+        file_with_timestamp('two.css')
       ]
 
       includer(bundled: false).list(group).must_equal(assets)
@@ -161,6 +161,14 @@ describe AssetsInclude::Base do
       .times(opts[:repeat] || 1)
       .with(([binary, "-r #{root}", "-c #{config}"] + opts[:options]).join(' '))
       .and_return(flexmock(read: opts[:output] || :assets))
+  end
+
+  def file_with_timestamp(name)
+    local_path = File.join('stylesheets', name)
+    absolute_path = File.join(root, local_path)
+    relative_path = absolute_path.sub(root, '')
+
+    "#{relative_path}?#{File.mtime(absolute_path).to_i * 1000}"
   end
 
   def group(name = 'all')

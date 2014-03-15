@@ -27,3 +27,17 @@ __END__
 @@ index
 <h1>Assets-includer-ruby showcase</h1>
 <p>CSS and JavaScript are included via <span class="pre">assets.group</span> calls (see source in app.rb)</p>
+<p>Here's a list of all CSS assets (you can get it programaticaly):</p>
+<ol>
+  <% assets.list('stylesheets/all.css').each do |asset| %>
+    <li><%= asset %></li>
+  <% end %>
+</ol>
+<p>and a list of all JavaScript ones:</p>
+<ol>
+  <% assets.list('javascripts/all.js').each do |asset| %>
+    <li><%= asset %></li>
+  <% end %>
+</ol>
+<p class="js-inline-placeholder"></p>
+<%= assets.inline('javascripts/inline.js') %>

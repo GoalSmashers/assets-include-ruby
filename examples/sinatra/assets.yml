@@ -2,6 +2,8 @@ javascripts:
   all:
     - vendor/*
     - main
+  inline:
+    - inline
 stylesheets:
   all:
     - normalize

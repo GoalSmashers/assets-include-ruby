@@ -8,6 +8,7 @@ module AssetsInclude
 
     def initialize(&block)
       @cache = Cache.new
+      @config = default_assets_location
 
       yield(self) if block_given?
     end
@@ -36,10 +37,14 @@ module AssetsInclude
       end
     end
 
+    def default_assets_location
+      File.join(Dir.pwd, 'assets.yml')
+    end
+
     def command(locator, options = {})
       parts = []
       parts << includer_binary
-      parts << "-r #{root}"
+      parts << "-r #{root}" if root
       parts << "-c #{config}"
       parts << '-b' if bundled
       parts << '-s' if cache_boosters
@@ -60,10 +65,14 @@ module AssetsInclude
 
     def binary_locations
       [
-        File.join(root, '..', 'node_modules', '.bin', 'assetsinc'),
-        File.join(root, 'node_modules', '.bin', 'assetsinc'),
+        File.join(implicit_root, '..', 'node_modules', '.bin', 'assetsinc'),
+        File.join(implicit_root, 'node_modules', '.bin', 'assetsinc'),
         'assetsinc'
       ]
+    end
+
+    def implicit_root
+      root || File.join(Dir.pwd, 'public')
     end
   end
 end

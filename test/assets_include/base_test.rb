@@ -21,6 +21,18 @@ describe AssetsInclude::Base do
 
       includer(binary: 'assetsinc').group(group)
     end
+
+    it 'should default `root` and `config`' do
+      flexmock(IO)
+        .should_receive(:popen)
+        .once
+        .with([binary, "-c #{File.join(Dir.pwd, 'assets.yml')}", group].join(' '))
+        .and_return(flexmock(read: ''))
+
+      described_class.new { |inc|
+        inc.binary = binary
+      }.group(group)
+    end
   end
 
   describe '#group' do

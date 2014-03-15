@@ -4,10 +4,7 @@ Bundler.setup
 require 'sinatra'
 require 'assets_include'
 
-helpers AssetsInclude::Helpers.configure { |assets|
-  assets.root = File.join(Dir.pwd, 'public')
-  assets.config = File.join(Dir.pwd, 'assets.yml')
-}
+helpers AssetsInclude::Helpers.configure
 
 get '/' do
   erb :index

@@ -1,4 +1,4 @@
-1.0.0 / 2014-xx-xx (UNRELEASED)
+1.0.0 / 2014-03-15
 ==================
 
 * Provides 1:1 mapping with `assetsinc` 1.1 API.

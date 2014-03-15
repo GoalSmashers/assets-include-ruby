@@ -2,5 +2,3 @@
 /pkg
 /Gemfile.lock
 node_modules
-
-test/fixtures/public/stylesheets/bundled

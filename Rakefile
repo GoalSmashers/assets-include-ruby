@@ -6,7 +6,7 @@ task default: :test
 task spec: :test
 
 task :test_setup do
-  `cd test/fixtures && npm install && ./node_modules/.bin/assetspkg -c assets.yml`
+  `cd test/fixtures && npm install`
 end
 
 Rake::TestTask.new(test: :test_setup) do |t|

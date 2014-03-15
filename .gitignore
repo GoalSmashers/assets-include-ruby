@@ -2,3 +2,6 @@
 /pkg
 /Gemfile.lock
 node_modules
+
+/examples/**/bundled
+/examples/**/.assets.yml.json

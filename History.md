@@ -6,3 +6,4 @@
 * Provides Sinatra examples.
 * Provides a #reset option to empty includer's cache.
 * Defaults to bundled mode if RACK_ENV variable is set to production.
+* Defaults cache_boosters to true as it is a more sane option.

@@ -31,7 +31,12 @@ describe AssetsInclude::Base do
 
       described_class.new { |inc|
         inc.binary = binary
+        inc.cache_boosters = false
       }.group(group)
+    end
+
+    it 'should set `cache_boosters` to true by default' do
+      described_class.new.cache_boosters.must_equal true
     end
 
     it 'should set `bundled` to false by default' do
@@ -174,6 +179,7 @@ describe AssetsInclude::Base do
       inc.root = root
       inc.config = config
       inc.bundled = true
+      inc.cache_boosters = false
       inc.binary = binary
 
       options.each do |key, value|

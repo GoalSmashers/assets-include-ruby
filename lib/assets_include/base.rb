@@ -10,6 +10,7 @@ module AssetsInclude
       @cache = Cache.new
       @config = default_assets_location
       @bundled = production?
+      @cache_boosters = true
 
       yield(self) if block_given?
     end

@@ -52,7 +52,7 @@ __END__
 </html>
 
 @@ index
-<h1>Yay, all assets are in</h1>
+<h1>Yay, all assets are included!</h1>
 ```
 
 AssetsInclude.helpers accepts an options hash, i.e.,

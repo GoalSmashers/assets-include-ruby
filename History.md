@@ -1,4 +1,4 @@
-[1.0.1 / 2014-xx-xx (UNRELEASED)](https://github.com/GoalSmashers/assets-include-ruby/compare/v1.0.1...1.0.0)
+[1.0.1 / 2014-04-27](https://github.com/GoalSmashers/assets-include-ruby/compare/v1.0.1...1.0.0)
 ==================
 
 * Fixes passing configuration variables to AssetsInclude.helpers.

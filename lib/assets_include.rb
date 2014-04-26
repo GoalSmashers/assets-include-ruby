@@ -3,8 +3,8 @@ require 'assets_include/proxy'
 require 'assets_include/version'
 
 module AssetsInclude
-  def self.helpers(*args)
-    Proxy.assets = Base.new(*args)
+  def self.helpers(&block)
+    Proxy.assets = Base.new(&block)
     Proxy
   end
 end

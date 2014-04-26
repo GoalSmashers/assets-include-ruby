@@ -55,7 +55,7 @@ __END__
 <h1>Yay, all assets are included!</h1>
 ```
 
-AssetsInclude.helpers accepts an options hash, i.e.,
+AssetsInclude.helpers accepts a configuration block exposing the following variables:
 
 * `bundled` - whether to serve bundled (production) or expanded (development) assets. Defaults based on ENV['RACK_ENV'] value.
 * `config` - path to configuration file, defaults to ./assets.yml

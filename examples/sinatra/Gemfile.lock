@@ -1,7 +1,7 @@
 PATH
   remote: ../..
   specs:
-    assets_include (0.0.1)
+    assets_include (2.0.0)
 
 GEM
   remote: https://rubygems.org/

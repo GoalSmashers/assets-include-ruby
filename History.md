@@ -1,4 +1,4 @@
-[2.0.0 / 2014-xx-xx](https://github.com/GoalSmashers/assets-include-ruby/compare/v2.0.0...v1.0.1)
+[2.0.0 / 2014-05-03](https://github.com/GoalSmashers/assets-include-ruby/compare/v2.0.0...v1.0.1)
 ==================
 
 * Changes AssetsInclude::Base to accept a hash instead of a block in initializer.

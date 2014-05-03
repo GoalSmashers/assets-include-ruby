@@ -29,10 +29,10 @@ describe AssetsInclude::Base do
         .with([binary, "-c #{File.join(Dir.pwd, 'assets.yml')}", group].join(' '))
         .and_return(flexmock(read: ''))
 
-      described_class.new { |inc|
-        inc.binary = binary
-        inc.cache_boosters = false
-      }.group(group)
+      described_class.new(
+        binary: binary,
+        cache_boosters: false
+      ).group(group)
     end
 
     it 'should set `cache_boosters` to true by default' do
@@ -175,17 +175,15 @@ describe AssetsInclude::Base do
   private
 
   def includer(options = {})
-    @includer ||= described_class.new do |inc|
-      inc.root = root
-      inc.config = config
-      inc.bundled = true
-      inc.cache_boosters = false
-      inc.binary = binary
+    defaults = {
+      root: root,
+      config: config,
+      bundled: true,
+      cache_boosters: false,
+      binary: binary
+    }
 
-      options.each do |key, value|
-        inc.public_send("#{key}=", value)
-      end
-    end
+    @includer ||= described_class.new(defaults.merge(options))
   end
 
   def should_run_includer_with(opts = {})

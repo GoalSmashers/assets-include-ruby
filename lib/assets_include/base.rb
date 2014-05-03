@@ -6,13 +6,15 @@ module AssetsInclude
     attr_accessor :bundled, :asset_hosts, :root, :config, :cache_boosters
     attr_accessor :binary
 
-    def initialize(&block)
+    def initialize(options = {})
       @cache = Cache.new
       @config = default_assets_location
       @bundled = production?
       @cache_boosters = true
 
-      yield(self) if block_given?
+      options.each do |key, value|
+        public_send("#{key}=", value)
+      end
     end
 
     def group(locator, options = {})

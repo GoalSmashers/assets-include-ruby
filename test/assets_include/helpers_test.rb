@@ -16,8 +16,8 @@ describe AssetsInclude do
   private
 
   def helpers
-    AssetsInclude.helpers { |h|
-      h.config = 'test.yml'
-    }
+    AssetsInclude.helpers(
+      config: 'test.yml'
+    )
   end
 end

@@ -1,3 +1,4 @@
+require_relative 'binary'
 require_relative 'cache'
 
 module AssetsInclude
@@ -69,18 +70,7 @@ module AssetsInclude
     end
 
     def includer_binary
-      @binary ||= binary_locations.find { |path|
-        IO.popen("which #{path}")
-        $?.to_i == 0
-      }
-    end
-
-    def binary_locations
-      [
-        File.join(implicit_root, '..', 'node_modules', '.bin', 'assetsinc'),
-        File.join(implicit_root, 'node_modules', '.bin', 'assetsinc'),
-        'assetsinc'
-      ]
+      @binary ||= Binary.new(implicit_root).location
     end
 
     def implicit_root
